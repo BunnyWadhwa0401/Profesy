@@ -1,13 +1,13 @@
+<script setup>
+import sideBar from "./components/sideBar.vue";
+</script>
+
 <template>
   <div class="app">
     <sideBar />
     <router-view />
   </div>
 </template>
-
-<script setup>
-import sideBar from "./components/sideBar.vue";
-</script>
 
 <style>
 main {
