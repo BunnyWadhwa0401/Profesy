@@ -1,9 +1,7 @@
 <template>
   <div
     class="fixed top-6 w-20 h-[85vh] left-12 py-4 bg-black rounded-[24px_24px_40px_40px] flex flex-col items-center justify-between">
-    <h2 class="ml-0 mt-6 font-logo font-normal text-2xl leading-6 text-white">
-      P
-    </h2>
+    <h2 class="ml-0 mt-6 font-logo font-normal text-2xl leading-6 text-white">P</h2>
     <section class="grid place-content-center gap-8">
       <svg class="pl-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_74_301)">
