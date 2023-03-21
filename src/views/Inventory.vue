@@ -161,5 +161,39 @@ import inventoryStatus from "../components/inventoryStatus.vue";
         </div>
       </section>
     </div>
+    <div class="grid grid-rows-4 h-[15rem] w-full mt-8">
+      <section
+        class="grid grid-cols-4 items-center bg-black rounded-t-3xl font-heading text-white font-medium"
+      >
+        <h3 class="flex justify-center">TIME</h3>
+        <h3 class="flex justify-center">MATERIAL</h3>
+        <h3 class="flex justify-center">ORDER</h3>
+        <h3 class="flex justify-center">QUANITITY</h3>
+      </section>
+      <section class="grid grid-cols-4 font-text font-normal items-center">
+        <h3 class="flex justify-center">1:20</h3>
+        <h3 class="flex justify-center">Organza</h3>
+        <h3 class="flex justify-center">Dupatta for Archana's Set</h3>
+        <h3 class="flex justify-center">2 meters</h3>
+      </section>
+      <section class="grid grid-cols-4 font-text font-normal items-center">
+        <h3 class="flex justify-center">2:50</h3>
+        <h3 class="flex justify-center">Georgette</h3>
+        <h3 class="flex justify-center">Anshu Lakhwani Black Jumpsuit</h3>
+        <h3 class="flex justify-center">10 meters</h3>
+      </section>
+      <section class="grid grid-cols-4 font-text font-normal items-center">
+        <h3 class="flex justify-center">3:20</h3>
+        <h3 class="flex justify-center">Brocade</h3>
+        <h3 class="flex justify-center">Babita Goel Kurta Set</h3>
+        <h3 class="flex justify-center">6 meters</h3>
+      </section>
+      <section class="grid grid-cols-4 font-text font-normal items-center mt-2">
+        <h3 class="flex justify-center">5:40</h3>
+        <h3 class="flex justify-center">Organza</h3>
+        <h3 class="flex justify-center">Dupatta for Archana's Set</h3>
+        <h3 class="flex justify-center">3 meters</h3>
+      </section>
+    </div>
   </main>
 </template>
