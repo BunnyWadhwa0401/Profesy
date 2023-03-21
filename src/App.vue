@@ -1,5 +1,7 @@
 <script setup>
 import sideBar from "./components/sideBar.vue";
+import firebase from 'firebase/app';
+import 'firebase/database';
 </script>
 
 <template>
