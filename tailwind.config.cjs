@@ -10,6 +10,8 @@ module.exports = {
       dark: "#333",
       grey: "#666",
       background: "#F4F4F4",
+      battery: "#EEE",
+      numberPer: "#FF2400",
       secondary: "#ddcfab",
     },
     fontFamily: {
