@@ -50,30 +50,18 @@
 .card svg circle:last-of-type {
   stroke-dasharray: 436px;
   stroke-dashoffset: calc(436px - (436px * var(--percent)) / 100);
-  stroke: #3498db;
+  stroke: #ccc;
+  opacity: 0;
 }
 
-.card .number {
+.number {
   position: absolute;
   top: 50%;
-  left: 35%;
+  left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.card .number h3 {
-  font-weight: 200;
-  font-size: 3.5rem;
-}
-
-.card .number h3 span {
-  font-size: 2rem;
 }
 
 .card .title h2 {
   margin: 25px 0 0;
-}
-
-.card svg circle:last-of-type {
-  stroke: #222;
 }
 </style>
