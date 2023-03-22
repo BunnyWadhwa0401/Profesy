@@ -1,5 +1,7 @@
 <script setup>
 import sideBar from "./components/sideBar.vue";
+// import firebase from 'firebase/app';
+// import 'firebase/database';
 </script>
 
 <template>
@@ -14,6 +16,7 @@ main {
   margin-left: 11vw;
   margin-top: 4vh;
   padding-right: 4vw;
+  color: #333;
 }
 
 * {
