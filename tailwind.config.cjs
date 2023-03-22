@@ -11,14 +11,14 @@ module.exports = {
       grey: "#666",
       background: "#F4F4F4",
       battery: "#EEE",
-      numberPer: "#FF2400",
+      primary: "#FF2400",
       secondary: "#ddcfab",
     },
     fontFamily: {
       heading: ["Raleway", "sans-serif"],
       text: ["DM Sans", "sans-serif"],
       logo: ["McLaren", "sans-serif"],
-    }
+    },
   },
   plugins: [],
 };

@@ -1,11 +1,57 @@
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
+
+const props = defineProps({
+  status: {
+    type: Number,
+    default: 0,
+  },
+  total: {
+    type: Number,
+    default: 0,
+  },
+  item: {
+    type: String,
+    required: true,
+  },
+});
+const isLow = ref(false);
+let percentage = Math.floor((props.status * 100) / props.total) - 2;
+if (percentage < 25) isLow.value = true;
+percentage += "%";
+const battery = ref(null);
+onMounted(() => {
+  console.log(percentage);
+  let el = battery.value as HTMLElement;
+  el.style.setProperty("--after-width", percentage);
+  if (isLow.value) el.style.setProperty("--after-bg", "#ff240020");
+});
+</script>
+
 <template>
-  <section class="bg-white shadow-xl mt-5 rounded-3xl p-1 w-full h-48">
-    <div class="bg-battery rounded-[20px] w-[60%] h-[11.5rem] pl-5">
-      <section class="flex gap-2">
-        <h3 class="font-heading text-numberPer mt-5 text-3xl">30</h3>
-        <h3 class="font-text mt-7">meters left</h3>
-      </section>
-      <h5 class="font-text text-sm font-medium mt-2">BUCKRAM</h5>
+  <section id="battery" ref="battery" class="bg-white shadow-xl mt-5 rounded-3xl p-6 w-full h-48 relative z-20">
+    <!-- <div class="bg-battery h-full rounded-3xl relative top-0" ref="battery"></div> -->
+    <div class="flex items-end gap-2 mt-4">
+      <h3 class="font-heading text-primary text-3xl">{{ props.status }}</h3>
+      <h3 class="font-text">meters left</h3>
     </div>
+    <h5 class="font-text text-sm font-medium mt-2 uppercase">
+      {{ props.item }}
+    </h5>
+    <h3 class="font-heading font-medium text-end text-lg text-grey mt-6">{{ percentage }}</h3>
   </section>
 </template>
+
+<style lang="sass" scoped>
+#battery
+  &::after
+    content: ""
+    background: var(--after-bg, #eee)
+    border-radius: 1.25rem
+    position: absolute
+    top: 4px
+    left: 4px
+    z-index: -10
+    width: var(--after-width, 0)
+    height: 96%
+</style>

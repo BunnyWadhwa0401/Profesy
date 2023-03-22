@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "firebase": "^9.18.0",
+    "gsap": "^3.11.5",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
