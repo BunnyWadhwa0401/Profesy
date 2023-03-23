@@ -1,5 +1,6 @@
 <script setup>
 import appointmentBox from "../components/appointmentBox.vue";
+import EventBox from "../components/EventBox.vue";
 </script>
 
 <template>
@@ -122,12 +123,9 @@ import appointmentBox from "../components/appointmentBox.vue";
           />
         </svg>
       </section>
-      <appointment-box />
-      <appointment-box />
-      <appointment-box />
-      <appointment-box />
-      <appointment-box />
-      <appointment-box />
+      <section v-for="i in 6" :key="i">
+        <appointment-box />
+      </section>
       <section class="flex items-center justify-end">
         <svg
           width="48"
@@ -144,6 +142,40 @@ import appointmentBox from "../components/appointmentBox.vue";
           />
         </svg>
       </section>
+    </section>
+    <section class="grid grid-cols-8 mt-6 justify-items-center gap-36">
+      <section></section>
+      <section class="grid h-40 gap-6 mt-5">
+        <section v-for="i in 4" :key="i">
+          <EventBox />
+        </section>
+      </section>
+      <section class="grid h-40 gap-6 mt-5">
+        <section v-for="i in 2" :key="i">
+          <EventBox />
+        </section>
+      </section>
+      <section class="grid h-40 gap-6 mt-5">
+        <section v-for="i in 3" :key="i">
+          <EventBox />
+        </section>
+      </section>
+      <section class="grid h-40 gap-6 mt-5">
+        <section v-for="i in 6" :key="i">
+          <EventBox />
+        </section>
+      </section>
+      <section class="grid h-40 gap-6 mt-5">
+        <section v-for="i in 1" :key="i">
+          <EventBox />
+        </section>
+      </section>
+      <section class="grid h-40 gap-6 mt-5">
+        <section v-for="i in 5" :key="i">
+          <EventBox />
+        </section>
+      </section>
+      <section></section>
     </section>
   </main>
 </template>
