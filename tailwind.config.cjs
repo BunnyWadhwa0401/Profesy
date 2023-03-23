@@ -11,7 +11,7 @@ module.exports = {
       grey: "#666",
       background: "#F4F4F4",
       battery: "#EEE",
-      primary: "#FF2400",
+      primary: "#00CCC2",
       secondary: "#ddcfab",
     },
     fontFamily: {

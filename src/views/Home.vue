@@ -48,7 +48,6 @@ onMounted(() => {
       },
       "-=0.5"
     )
-
     .fromTo(".tile",
       {
         y: -50,
@@ -256,7 +255,7 @@ const formattedDate = computed(() => {
         </section>
         <section class="flex items-center font-heading">
           <div class="flex items-center relative w-4/6 h-1">
-            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-light to-primary rounded-full">
+            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-primary rounded-full">
             </div>
           </div>
           <div class="progress-text mr-2"></div>
@@ -274,7 +273,7 @@ const formattedDate = computed(() => {
         </section>
         <section class="flex items-center font-heading">
           <div class="flex items-center relative w-4/6 h-1">
-            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-light to-primary rounded-full">
+            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-primary rounded-full">
             </div>
           </div>
           <div class="progress-text mr-2"></div>
@@ -293,7 +292,7 @@ const formattedDate = computed(() => {
         </section>
         <section class="flex items-center font-heading">
           <div class="flex items-center relative w-4/6 h-1">
-            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-light to-primary rounded-full">
+            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-primary rounded-full">
             </div>
           </div>
           <div class="progress-text mr-2"></div>
@@ -311,7 +310,7 @@ const formattedDate = computed(() => {
         </section>
         <section class="flex items-center font-heading">
           <div class="flex items-center relative w-4/6 h-1">
-            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-light to-primary rounded-full">
+            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-primary rounded-full">
             </div>
           </div>
           <div class="progress-text mr-2"></div>
@@ -329,7 +328,7 @@ const formattedDate = computed(() => {
         </section>
         <section class="flex items-center font-heading">
           <div class="flex items-center relative w-4/6 h-1">
-            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-light to-primary rounded-full">
+            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-primary rounded-full">
             </div>
           </div>
           <div class="progress-text mr-2"></div>

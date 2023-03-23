@@ -1,10 +1,43 @@
 <script setup>
+import { onMounted } from "vue";
+import gsap from 'gsap';
 import inventoryStatus from "../components/inventoryStatus.vue";
+
+
 function randomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 const status = randomNum(5, 30)
 const total = randomNum(35, 60)
+
+onMounted(() => {
+  const timeLine = gsap.timeline({
+    Defaults: { Easing: "Expo.easeInOut" },
+  });
+  timeLine
+    .fromTo(".fadeIn *",
+      {
+        opacity: 0
+      },
+      {
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.05,
+      },
+    )
+    .fromTo(".tile",
+      {
+        y: -50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.25,
+      },
+      "-=0.2"
+    )
+})
 </script>
 
 <template>
@@ -45,7 +78,7 @@ const total = randomNum(35, 60)
         </svg>
       </section>
     </div>
-    <div class="grid grid-cols-3 w-full h-[14rem] gap-4 justify-between">
+    <div class="fadeIn grid grid-cols-3 w-full h-[14rem] gap-4 justify-between">
       <inventory-status item="buckram" :status="randomNum(5, 30)" :total="randomNum(35, 60)" />
       <inventory-status item="organza" :status="randomNum(5, 30)" :total="randomNum(35, 60)" />
       <inventory-status item="georgette" :status="randomNum(5, 30)" :total="randomNum(35, 60)" />
@@ -85,35 +118,36 @@ const total = randomNum(35, 60)
         </div>
       </section>
     </div>
-    <div class="grid grid-rows-4 h-[15rem] w-full mt-8">
-      <section class="grid grid-cols-4 items-center bg-black rounded-t-3xl font-heading text-white font-medium">
-        <h3 class="flex justify-center">TIME</h3>
-        <h3 class="flex justify-center">MATERIAL</h3>
-        <h3 class="flex justify-center">ORDER</h3>
-        <h3 class="flex justify-center">QUANITITY</h3>
+    <div class="grid w-full mt-8">
+      <section
+        class="fadeIn grid grid-cols-[1fr_2fr_3fr_2fr] items-center bg-black rounded-t-3xl font-heading text-white font-medium py-4">
+        <h3 class="flex justify-center border-r-2 border-white">TIME</h3>
+        <h3 class="flex justify-center border-r-2 border-white">MATERIAL</h3>
+        <h3 class="flex justify-center border-r-2 border-white">ORDER</h3>
+        <h3 class="flex justify-center ">QUANITITY</h3>
       </section>
-      <section class="grid grid-cols-4 font-text font-normal items-center">
+      <section class="tile grid grid-cols-[1fr_2fr_3fr_2fr] font-text font-normal items-center py-4">
         <h3 class="flex justify-center">1:20</h3>
         <h3 class="flex justify-center">Organza</h3>
         <h3 class="flex justify-center">Dupatta for Archana's Set</h3>
         <h3 class="flex justify-center">2 meters</h3>
       </section>
-      <section class="grid grid-cols-4 font-text font-normal items-center">
+      <section class="tile grid grid-cols-[1fr_2fr_3fr_2fr] font-text font-normal items-center py-4">
         <h3 class="flex justify-center">2:50</h3>
         <h3 class="flex justify-center">Georgette</h3>
         <h3 class="flex justify-center">Anshu Lakhwani Black Jumpsuit</h3>
         <h3 class="flex justify-center">10 meters</h3>
       </section>
-      <section class="grid grid-cols-4 font-text font-normal items-center">
+      <section class="tile grid grid-cols-[1fr_2fr_3fr_2fr] font-text font-normal items-center py-4">
         <h3 class="flex justify-center">3:20</h3>
         <h3 class="flex justify-center">Brocade</h3>
         <h3 class="flex justify-center">Babita Goel Kurta Set</h3>
         <h3 class="flex justify-center">6 meters</h3>
       </section>
-      <section class="grid grid-cols-4 font-text font-normal items-center mt-2">
+      <section class="tile grid grid-cols-[1fr_2fr_3fr_2fr] font-text font-normal items-center py-4">
         <h3 class="flex justify-center">5:40</h3>
         <h3 class="flex justify-center">Organza</h3>
-        <h3 class="flex justify-center">Dupatta for Archana's Set</h3>
+        <h3 class="flex justify-center">Coat for Archana's Kimono</h3>
         <h3 class="flex justify-center">3 meters</h3>
       </section>
     </div>

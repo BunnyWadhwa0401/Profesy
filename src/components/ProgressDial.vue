@@ -10,7 +10,7 @@
         <circle cx="75" cy="75" r="70" style="--percent: 70"></circle>
       </svg>
       <div class="number">
-        <h4 class="font-heading text-primary text-2xl">70%</h4>
+        <h4 class="font-heading font-semibold text-primary text-2xl">70%</h4>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
 .card svg circle:last-of-type {
   stroke-dasharray: 436px;
   stroke-dashoffset: calc(436px - (436px * var(--percent)) / 100);
-  stroke: #ccc;
+  stroke: #222;
   opacity: 0;
 }
 

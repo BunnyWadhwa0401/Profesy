@@ -20,19 +20,22 @@ let percentage = Math.floor((props.status * 100) / props.total) - 2;
 if (percentage < 25) isLow.value = true;
 percentage += "%";
 const battery = ref(null);
+const status = ref(null);
 onMounted(() => {
   console.log(percentage);
   let el = battery.value as HTMLElement;
   el.style.setProperty("--after-width", percentage);
-  if (isLow.value) el.style.setProperty("--after-bg", "#ff240020");
+  if (isLow.value) {
+    el.style.setProperty("--after-bg", "#ff24002b");
+    status.value.style.color = "#ff2400"
+  }
 });
 </script>
 
 <template>
   <section id="battery" ref="battery" class="bg-white shadow-xl mt-5 rounded-3xl p-6 w-full h-48 relative z-20">
-    <!-- <div class="bg-battery h-full rounded-3xl relative top-0" ref="battery"></div> -->
     <div class="flex items-end gap-2 mt-4">
-      <h3 class="font-heading text-primary text-3xl">{{ props.status }}</h3>
+      <h3 ref="status" class="font-heading text-primary text-3xl">{{ props.status }}</h3>
       <h3 class="font-text">meters left</h3>
     </div>
     <h5 class="font-text text-sm font-medium mt-2 uppercase">
@@ -46,7 +49,7 @@ onMounted(() => {
 #battery
   &::after
     content: ""
-    background: var(--after-bg, #eee)
+    background: var(--after-bg, #00CCC220)
     border-radius: 1.25rem
     position: absolute
     top: 4px
