@@ -1,13 +1,50 @@
 <script lang="ts" setup>
-import ProgressDial from "../components/ProgressDial.vue";
-import { computed, onMounted } from "vue";
-import gsap from "gsap";
+import ProgressDial from '../components/ProgressDial.vue';
+import { computed, onMounted, ref } from 'vue';
+import gsap from 'gsap';
+import axios from 'axios';
 
-function randomNum(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+const sheet1Data = ref([]);
+const sheet2Data = ref([]);
+const error = ref(null);
+
+function randomNum(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-onMounted(() => {
+onMounted(async () => {
+  try {
+    const [sheet1Response, sheet2Response] = await axios.all([
+      axios.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-a28aiFABT2GF-6AZCdf5iusnA92I2Ay_CPsRbnXl9Rtd7zR6AzGB-3NaG67BOWsa-A0_KwhKrddY/pub?gid=0&single=true&output=csv'),
+      axios.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-a28aiFABT2GF-6AZCdf5iusnA92I2Ay_CPsRbnXl9Rtd7zR6AzGB-3NaG67BOWsa-A0_KwhKrddY/pub?gid=505295928&single=true&output=csv')
+    ]);
+
+    const sheet1DataCsv = sheet1Response.data;
+    const sheet1Rows = sheet1DataCsv.split('\n');
+    // ... process sheet 1 data into JSON format
+    const sheet1JsonData = [];
+
+    for (let i = 1; i < sheet1Rows.length; i++) {
+      let row = sheet1Rows[i].split(',');
+      sheet1Data.value.push(row);
+    }
+
+    const sheet2DataCsv = sheet2Response.data;
+    const sheet2Rows = sheet2DataCsv.split('\n');
+    // ... process sheet 2 data into JSON format
+    const sheet2JsonData = [];
+
+    for (let i = 1; i < sheet2Rows.length; i++) {
+      let row = sheet2Rows[i].split(',');
+      sheet2Data.value.push(row)
+    }
+
+    console.log(sheet1Data.value)
+    console.log(sheet2Data.value)
+  } catch (e) {
+    error.value = e.message;
+  }
+
   const timeLine = gsap.timeline({
     Defaults: { Easing: "Expo.easeInOut" },
   });
@@ -384,7 +421,7 @@ const formattedDate = computed(() => {
         class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center"
       >
         <section class="flex justify-center font-heading">#3021</section>
-        <section class="flex justify-center font-heading">Meenakshi Savant</section>
+        <section class="flex justify-center font-heading text-lg">Meenakshi Savant</section>
         <section class="flex justify-center font-text">Pink Lehenga</section>
         <section class="flex justify-center gap-2">
           <img class="h-6 w-6" src="../images/Iron image.png" alt="Iron Image" />
@@ -406,7 +443,7 @@ const formattedDate = computed(() => {
         class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center"
       >
         <section class="flex justify-center font-heading">#0604</section>
-        <section class="flex justify-center font-heading">Anshu Lakhwani</section>
+        <section class="flex justify-center font-heading text-lg">Anshu Lakhwani</section>
         <section class="flex justify-center font-text">Black jumpsuit</section>
         <section class="flex justify-center gap-1">
           <img class="h-5 w-5" src="../images/Inspect Icon.png" alt="Inspect icon" />
@@ -430,7 +467,7 @@ const formattedDate = computed(() => {
         class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center"
       >
         <section class="flex justify-center font-heading">#2996</section>
-        <section class="flex justify-center font-heading">Archana Chabbra</section>
+        <section class="flex justify-center font-heading text-lg">Archana Chabbra</section>
         <section class="flex justify-center font-text">Maroon Kurta Set</section>
         <section class="flex justify-center gap-1">
           <img class="h-5 w-5 mt-1" src="../images/Dyeing.png" alt="Dyeing" />
@@ -454,7 +491,7 @@ const formattedDate = computed(() => {
         class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center"
       >
         <section class="flex justify-center font-heading">#3079</section>
-        <section class="flex justify-center font-heading">Tanisha Agarwal</section>
+        <section class="flex justify-center font-heading text-lg">Tanisha Agarwal</section>
         <section class="flex justify-center font-text">Red cotton kurta set</section>
         <section class="flex justify-center gap-1">
           <img class="h-5 w-5 mt-1" src="../images/Dyeing.png" alt="Dyeing" />
@@ -478,7 +515,7 @@ const formattedDate = computed(() => {
         class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center"
       >
         <section class="flex justify-center font-heading">#2347</section>
-        <section class="flex justify-center font-heading">Bina Agarwal</section>
+        <section class="flex justify-center font-heading text-lg">Bina Agarwal</section>
         <section class="flex justify-center font-text">Green jumpsuit</section>
         <section class="flex justify-center gap-2">
           <img class="h-6 w-6" src="../images/Iron image.png" alt="Iron Image" />
