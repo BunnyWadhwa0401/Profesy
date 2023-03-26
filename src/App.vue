@@ -21,6 +21,7 @@ onMounted(async () => {
         let row = rows[i].split(',');
         sheet.push(row);
       }
+      sheet.shift();
       return sheet;
     }
 

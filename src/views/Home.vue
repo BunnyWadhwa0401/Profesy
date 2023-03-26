@@ -1,7 +1,31 @@
 <script lang="ts" setup>
 import ProgressDial from '../components/ProgressDial.vue';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import gsap from 'gsap';
+
+let orders = ref(localStorage.getItem("Orders"))
+orders.value = JSON.parse(orders.value.replace(/'/g, '"'));
+
+function formatDate(dateString) {
+  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const dateArr = dateString.split('/');
+  const day = parseInt(dateArr[0]);
+  const month = parseInt(dateArr[1]) - 1;
+  const year = parseInt(dateArr[2]);
+  const date = new Date(year, month, day);
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  if (date.toDateString() === today.toDateString()) {
+    return 'to be delivered today';
+  } else if (date.toDateString() === tomorrow.toDateString()) {
+    return 'to be delivered tomorrow';
+  } else {
+    const weekdayIndex = date.getDay();
+    const weekday = weekdays[weekdayIndex];
+    return `to be delivered on ${weekday}`;
+  }
+}
 
 function randomNum(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min
@@ -76,7 +100,7 @@ onMounted(() => {
         delay: 0.5,
         stagger: 0.2,
       },
-      "-=2"
+      "-=6.4"
     );
 
   let randomProgress = function () {
@@ -251,14 +275,14 @@ const formattedDate = computed(() => {
           </div>
         </section>
       </div>
-      <section
-        class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center">
-        <section class="flex justify-center font-heading">#3021</section>
-        <section class="flex justify-center font-heading text-lg">Meenakshi Savant</section>
-        <section class="flex justify-center font-text">Pink Lehenga</section>
-        <section class="flex justify-center gap-2">
+      <section v-for="order in orders" :key="order"
+        class="tile grid grid-cols-[1fr_2fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center">
+        <section class="text-center font-heading">#{{ order[0] }}</section>
+        <section class="font-heading text-lg">{{ order[1] }}</section>
+        <section class=" font-text">{{ order[2] }}</section>
+        <section class="flex gap-4 px-2">
           <img class="h-6 w-6" src="../images/Iron image.png" alt="Iron Image" />
-          <h4 class="font-text">Ironing</h4>
+          <h4 class="font-text">{{ order[3] }}</h4>
         </section>
         <section class="flex items-center font-heading">
           <div class="flex items-center relative w-4/6 h-1">
@@ -266,86 +290,11 @@ const formattedDate = computed(() => {
           </div>
           <div class="progress-text mr-2"></div>
         </section>
-        <section class="bg-primary/10 flex justify-center px-4 py-2 rounded-xl">
-          To be delivered today
+        <section class="bg-primary/10 flex justify-center px-6 py-2 rounded-xl">
+          {{ formatDate(order[4]) }}
         </section>
       </section>
-      <section
-        class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center">
-        <section class="flex justify-center font-heading">#0604</section>
-        <section class="flex justify-center font-heading text-lg">Anshu Lakhwani</section>
-        <section class="flex justify-center font-text">Black jumpsuit</section>
-        <section class="flex justify-center gap-1">
-          <img class="h-5 w-5" src="../images/Inspect Icon.png" alt="Inspect icon" />
-          <h4 class="font-text">Inspection</h4>
-        </section>
-        <section class="flex items-center font-heading">
-          <div class="flex items-center relative w-4/6 h-1">
-            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-primary rounded-full"></div>
-          </div>
-          <div class="progress-text mr-2"></div>
-        </section>
-        <section class="bg-primary/10 flex justify-center w-fit m-auto px-4 py-2 rounded-xl">
-          To be delivered today
-        </section>
-      </section>
-      <section
-        class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center">
-        <section class="flex justify-center font-heading">#2996</section>
-        <section class="flex justify-center font-heading text-lg">Archana Chabbra</section>
-        <section class="flex justify-center font-text">Maroon Kurta Set</section>
-        <section class="flex justify-center gap-1">
-          <img class="h-5 w-5 mt-1" src="../images/Dyeing.png" alt="Dyeing" />
-          <h4 class="font-text">Dyeing</h4>
-        </section>
-        <section class="flex items-center font-heading">
-          <div class="flex items-center relative w-4/6 h-1">
-            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-primary rounded-full"></div>
-          </div>
-          <div class="progress-text mr-2"></div>
-        </section>
-        <section class="bg-primary/10 flex justify-center w-fit m-auto px-4 py-2 rounded-xl">
-          Due Tomorrow
-        </section>
-      </section>
-      <section
-        class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center">
-        <section class="flex justify-center font-heading">#3079</section>
-        <section class="flex justify-center font-heading text-lg">Tanisha Agarwal</section>
-        <section class="flex justify-center font-text">Red cotton kurta set</section>
-        <section class="flex justify-center gap-1">
-          <img class="h-5 w-5 mt-1" src="../images/Dyeing.png" alt="Dyeing" />
-          <h4 class="font-text">Dyeing</h4>
-        </section>
-        <section class="flex items-center font-heading">
-          <div class="flex items-center relative w-4/6 h-1">
-            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-primary rounded-full"></div>
-          </div>
-          <div class="progress-text mr-2"></div>
-        </section>
-        <section class="bg-primary/10 flex justify-center w-fit m-auto px-4 py-2 rounded-xl">
-          Due tomorrow
-        </section>
-      </section>
-      <section
-        class="tile grid grid-cols-[1fr_3fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center">
-        <section class="flex justify-center font-heading">#2347</section>
-        <section class="flex justify-center font-heading text-lg">Bina Agarwal</section>
-        <section class="flex justify-center font-text">Green jumpsuit</section>
-        <section class="flex justify-center gap-2">
-          <img class="h-6 w-6" src="../images/Iron image.png" alt="Iron Image" />
-          <h4 class="font-text">Ironing</h4>
-        </section>
-        <section class="flex items-center font-heading">
-          <div class="flex items-center relative w-4/6 h-1">
-            <div class="progress absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-primary rounded-full"></div>
-          </div>
-          <div class="progress-text mr-2"></div>
-        </section>
-        <section class="bg-primary/10 flex justify-center w-fit m-auto px-4 py-2 rounded-xl">
-          Due Wednesday
-        </section>
-      </section>
+
     </div>
   </main>
 </template>
