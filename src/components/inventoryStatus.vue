@@ -27,7 +27,7 @@ onMounted(() => {
   el.style.setProperty("--after-width", percentage);
   if (isLow.value) {
     el.style.setProperty("--after-bg", "#ff24002b");
-    status.value.style.color = "#ff2400"
+    status.value.style.color = "#ff2400";
   }
 });
 </script>
@@ -41,7 +41,9 @@ onMounted(() => {
     <h5 class="font-text text-sm font-medium mt-2 uppercase">
       {{ props.item }}
     </h5>
-    <h3 class="font-heading font-medium text-end text-lg text-grey mt-6">{{ percentage }}</h3>
+    <h3 class="font-heading font-medium text-end text-lg text-grey mt-6">
+      {{ percentage }}
+    </h3>
   </section>
 </template>
 
