@@ -27,13 +27,17 @@ onMounted(() => {
   el.style.setProperty("--after-width", percentage);
   if (isLow.value) {
     el.style.setProperty("--after-bg", "#ff24002b");
-    status.value.style.color = "#ff2400"
+    status.value.style.color = "#ff2400";
   }
 });
 </script>
 
 <template>
-  <section id="battery" ref="battery" class="bg-white shadow-xl mt-5 rounded-3xl p-6 w-full h-48 relative z-20">
+  <section
+    id="battery"
+    ref="battery"
+    class="bg-white shadow-xl mt-5 rounded-3xl p-6 w-full h-48 relative z-20"
+  >
     <div class="flex items-end gap-2 mt-4">
       <h3 ref="status" class="font-heading text-primary text-3xl">{{ props.status }}</h3>
       <h3 class="font-text">meters left</h3>
@@ -41,7 +45,9 @@ onMounted(() => {
     <h5 class="font-text text-sm font-medium mt-2 uppercase">
       {{ props.item }}
     </h5>
-    <h3 class="font-heading font-medium text-end text-lg text-grey mt-6">{{ percentage }}</h3>
+    <h3 class="font-heading font-medium text-end text-lg text-grey mt-6">
+      {{ percentage }}
+    </h3>
   </section>
 </template>
 
