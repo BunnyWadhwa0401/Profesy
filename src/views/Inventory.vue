@@ -15,15 +15,12 @@ onMounted(() => {
     Defaults: { Easing: "Expo.easeInOut" },
   });
   timeLine
-    .fromTo(".fadeIn *",
+    .from(".fadeIn section",
       {
-        opacity: 0
-      },
-      {
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.05,
-      },
+        width: 10,
+        opacity: 0,
+        stagger: 0.2,
+      }
     )
     .fromTo(".tile",
       {
@@ -35,7 +32,7 @@ onMounted(() => {
         opacity: 1,
         stagger: 0.25,
       },
-      "-=0.2"
+      "-=1"
     )
 })
 </script>
@@ -120,35 +117,35 @@ onMounted(() => {
     </div>
     <div class="grid w-full mt-8">
       <section
-        class="fadeIn grid grid-cols-[1fr_2fr_3fr_2fr] items-center bg-black rounded-t-3xl font-heading text-white font-medium py-4">
-        <h3 class="flex justify-center border-r-2 border-white">TIME</h3>
-        <h3 class="flex justify-center border-r-2 border-white">MATERIAL</h3>
-        <h3 class="flex justify-center border-r-2 border-white">ORDER</h3>
-        <h3 class="flex justify-center ">QUANITITY</h3>
+        class="grid grid-cols-[1fr_2fr_3fr_2fr] items-center bg-black rounded-t-3xl font-heading text-white font-medium py-4">
+        <h3 class="text-center border-r-2 border-white">TIME</h3>
+        <h3 class="text-center border-r-2 border-white">MATERIAL</h3>
+        <h3 class="text-center border-r-2 border-white">ORDER</h3>
+        <h3 class="text-center ">QUANITITY</h3>
       </section>
       <section class="tile grid grid-cols-[1fr_2fr_3fr_2fr] font-text font-normal items-center py-4">
-        <h3 class="flex justify-center">1:20</h3>
-        <h3 class="flex justify-center">Organza</h3>
-        <h3 class="flex justify-center">Dupatta for Archana's Set</h3>
-        <h3 class="flex justify-center">2 meters</h3>
+        <h3 class="text-center">1:20</h3>
+        <h3 class="text-center">Organza</h3>
+        <h3 class="text-center">Dupatta for Archana's Set</h3>
+        <h3 class="text-center">2 meters</h3>
       </section>
       <section class="tile grid grid-cols-[1fr_2fr_3fr_2fr] font-text font-normal items-center py-4">
-        <h3 class="flex justify-center">2:50</h3>
-        <h3 class="flex justify-center">Georgette</h3>
-        <h3 class="flex justify-center">Anshu Lakhwani Black Jumpsuit</h3>
-        <h3 class="flex justify-center">10 meters</h3>
+        <h3 class="text-center">2:50</h3>
+        <h3 class="text-center">Georgette</h3>
+        <h3 class="text-center">Anshu Lakhwani Black Jumpsuit</h3>
+        <h3 class="text-center">10 meters</h3>
       </section>
       <section class="tile grid grid-cols-[1fr_2fr_3fr_2fr] font-text font-normal items-center py-4">
-        <h3 class="flex justify-center">3:20</h3>
-        <h3 class="flex justify-center">Brocade</h3>
-        <h3 class="flex justify-center">Babita Goel Kurta Set</h3>
-        <h3 class="flex justify-center">6 meters</h3>
+        <h3 class="text-center">3:20</h3>
+        <h3 class="text-center">Brocade</h3>
+        <h3 class="text-center">Babita Goel Kurta Set</h3>
+        <h3 class="text-center">6 meters</h3>
       </section>
       <section class="tile grid grid-cols-[1fr_2fr_3fr_2fr] font-text font-normal items-center py-4">
-        <h3 class="flex justify-center">5:40</h3>
-        <h3 class="flex justify-center">Organza</h3>
-        <h3 class="flex justify-center">Coat for Archana's Kimono</h3>
-        <h3 class="flex justify-center">3 meters</h3>
+        <h3 class="text-center">5:40</h3>
+        <h3 class="text-center">Organza</h3>
+        <h3 class="text-center">Coat for Archana's Kimono</h3>
+        <h3 class="text-center">3 meters</h3>
       </section>
     </div>
   </main>
