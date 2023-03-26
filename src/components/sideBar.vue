@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-6 w-20 h-[85vh] left-12 py-4 bg-black rounded-[24px_24px_40px_40px] flex flex-col items-center justify-between">
+    class="fixed top-8 w-20 h-[50vh] left-12 py-4 bg-black rounded-[24px_24px_40px_40px] flex flex-col items-center justify-between">
     <router-link to="/">
       <h2 class="ml-0 mt-6 font-logo font-normal text-2xl leading-6 text-white">P</h2>
     </router-link>
