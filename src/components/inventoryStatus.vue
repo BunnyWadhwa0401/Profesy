@@ -22,7 +22,6 @@ percentage += "%";
 const battery = ref(null);
 const status = ref(null);
 onMounted(() => {
-  console.log(percentage);
   let el = battery.value as HTMLElement;
   el.style.setProperty("--after-width", percentage);
   if (isLow.value) {
