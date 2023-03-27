@@ -12,6 +12,10 @@ const router =createRouter({
             component: Home
         },
         {
+            path: '/home',
+            component: Home
+        },
+        {
             path: '/inventory',
             component: Inventory
         },
