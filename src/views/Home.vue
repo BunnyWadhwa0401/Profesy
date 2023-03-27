@@ -1,14 +1,22 @@
 <script lang="ts" setup>
-import ProgressDial from '../components/ProgressDial.vue';
-import { computed, onMounted, ref } from 'vue';
-import gsap from 'gsap';
+import ProgressDial from "../components/ProgressDial.vue";
+import { computed, onMounted, ref } from "vue";
+import gsap from "gsap";
 
-let orders = ref(localStorage.getItem("Orders"))
+let orders = ref(localStorage.getItem("Orders"));
 orders.value = JSON.parse(orders.value.replace(/'/g, '"'));
 
 function formatDate(dateString) {
-  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const dateArr = dateString.split('/');
+  const weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const dateArr = dateString.split("/");
   const day = parseInt(dateArr[0]);
   const month = parseInt(dateArr[1]) - 1;
   const year = parseInt(dateArr[2]);
@@ -17,9 +25,9 @@ function formatDate(dateString) {
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
   if (date.toDateString() === today.toDateString()) {
-    return 'to be delivered today';
+    return "to be delivered today";
   } else if (date.toDateString() === tomorrow.toDateString()) {
-    return 'to be delivered tomorrow';
+    return "to be delivered tomorrow";
   } else {
     const weekdayIndex = date.getDay();
     const weekday = weekdays[weekdayIndex];
@@ -28,7 +36,7 @@ function formatDate(dateString) {
 }
 
 function randomNum(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 onMounted(() => {
@@ -111,7 +119,9 @@ onMounted(() => {
   progressBar.forEach((el, index) => {
     let progress = randomProgress();
     el.style.width = `${progress}%`;
-    document.querySelectorAll(".progress-text")[index].innerHTML = `${progress}%`;
+    document.querySelectorAll(".progress-text")[
+      index
+    ].innerHTML = `${progress}%`;
   });
 });
 const greeting = computed(() => {
@@ -137,8 +147,12 @@ const formattedDate = computed(() => {
   } else {
     suffix = "th";
   }
-  const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(date);
-  const dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(date);
+  const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+    date
+  );
+  const dayOfWeek = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+  }).format(date);
   return `${day}${suffix} ${month}, ${dayOfWeek}`;
 });
 </script>
@@ -279,9 +293,50 @@ const formattedDate = computed(() => {
         class="tile grid grid-cols-[1fr_2fr_3fr_2fr_2fr_2fr] gap-6 bg-white rounded-[24px] w-full h-[5rem] px-8 shadow-lg shadow-grey/5 items-center">
         <section class="text-center font-heading">#{{ order[0] }}</section>
         <section class="font-heading text-lg">{{ order[1] }}</section>
-        <section class=" font-text">{{ order[2] }}</section>
+        <section class="font-text">{{ order[2] }}</section>
         <section class="flex gap-4 px-2">
-          <img class="h-6 w-6" src="../images/Iron image.png" alt="Iron Image" />
+          <svg v-show="order[3] == 'Ready'" class="fill-black" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M7.25002 7.25V7.13012C7.25002 4.96238 8.71763 3.06964 10.8171 2.52979C11.5931 2.33024 12.407 2.33024 13.183 2.52979C15.2824 3.06964 16.75 4.96238 16.75 7.13013V7.25H18.2511C18.8224 7.25 19.3073 7.66898 19.3901 8.23423L19.6088 9.72668C20.0393 12.6651 20.0393 15.6507 19.6088 18.5891C19.4008 20.0081 18.2565 21.1052 16.83 21.2531L16.2011 21.3183C13.4079 21.608 10.5921 21.608 7.79888 21.3183L7.17001 21.2531C5.74347 21.1052 4.59918 20.0081 4.39127 18.5891C3.96072 15.6507 3.96072 12.6651 4.39127 9.72668L4.60994 8.23423C4.69276 7.66898 5.17761 7.25 5.74889 7.25H7.25002ZM11.1906 3.98252C11.7216 3.84599 12.2784 3.84599 12.8094 3.98252C14.2459 4.3519 15.25 5.64693 15.25 7.13013V7.25H8.75002V7.13012C8.75002 5.64693 9.75417 4.3519 11.1906 3.98252ZM7.25002 8.75V11C7.25002 11.4142 7.5858 11.75 8.00002 11.75C8.41423 11.75 8.75002 11.4142 8.75002 11V8.75H15.25V11C15.25 11.4142 15.5858 11.75 16 11.75C16.4142 11.75 16.75 11.4142 16.75 11V8.75H17.9496L18.1246 9.94414C18.534 12.7384 18.534 15.5774 18.1246 18.3717C18.0162 19.1118 17.4193 19.684 16.6753 19.7611L16.0464 19.8264C13.356 20.1054 10.644 20.1054 7.95361 19.8264L7.32474 19.7611C6.5807 19.684 5.98386 19.1118 5.87542 18.3717C5.46601 15.5774 5.46601 12.7384 5.87542 9.94414L6.05039 8.75H7.25002Z" />
+          </svg>
+
+          <svg v-show="order[3] == 'Inspection'" width="24" height="24" viewBox="0 0 24 25" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M16.2455 18.3172C12.3184 21.4625 6.56994 21.2149 2.92952 17.5745C-0.976508 13.6685 -0.976508 7.33556 2.92952 3.42953C6.83556 -0.476509 13.1685 -0.476508 17.0745 3.42953C20.7149 7.06994 20.9625 12.8184 17.8172 16.7455L23.2342 22.6028C23.6682 23.0368 23.6682 23.7405 23.2342 24.1745C22.8002 24.6085 22.0966 24.6085 21.6626 24.1745L16.2455 18.3172ZM4.50119 16.0029C1.46317 12.9648 1.46317 8.03922 4.50119 5.00119C7.53922 1.96317 12.4648 1.96317 15.5029 5.00119C18.5387 8.03699 18.5409 12.9576 15.5095 15.9962C15.5073 15.9984 15.5051 16.0006 15.5028 16.0028C15.5006 16.005 15.4984 16.0073 15.4962 16.0095C12.4576 19.0409 7.53699 19.0387 4.50119 16.0029Z"
+              fill="#222222" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M14.0956 8.38408C14.2765 8.56492 14.2765 8.85811 14.0956 9.03894L9.77378 13.3608C9.59295 13.5416 9.29976 13.5416 9.11892 13.3608L6.64929 10.8912C6.46845 10.7103 6.46845 10.4171 6.64929 10.2363C6.83012 10.0555 7.12331 10.0555 7.30415 10.2363L9.44635 12.3785L13.4408 8.38408C13.6216 8.20325 13.9148 8.20325 14.0956 8.38408Z"
+              fill="#222222" />
+          </svg>
+
+          <svg v-show="order[3] == 'Handwork'" class="stroke-black" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M8.29942 13.9269L21 8M8.29942 13.9269C8.73669 13.4057 9 12.7336 9 12C9 10.3431 7.65685 9 6 9C4.34315 9 3 10.3431 3 12C3 13.6569 4.34315 15 6 15C6.92326 15 7.7491 14.5829 8.29942 13.9269ZM10.7398 17.0273L16 3M10.7398 17.0273C10.2791 17.5547 10 18.2447 10 19C10 20.6569 11.3431 22 13 22C14.6569 22 16 20.6569 16 19C16 17.3431 14.6569 16 13 16C12.0984 16 11.2897 16.3977 10.7398 17.0273Z"
+              stroke-width="2" stroke-linecap="round" />
+          </svg>
+
+          <svg v-show="order[3] == 'Dyeing'" class="fill-black" width="24" height="24" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_227_425)">
+              <path
+                d="M0 0.75C0 0.551088 0.0790176 0.360322 0.21967 0.21967C0.360322 0.0790176 0.551088 0 0.75 0L8.25 0C8.44891 0 8.63968 0.0790176 8.78033 0.21967C8.92098 0.360322 9 0.551088 9 0.75V8.6655L15.2205 2.469C15.3611 2.3284 15.5519 2.24941 15.7507 2.24941C15.9496 2.24941 16.1404 2.3284 16.281 2.469L21.5835 7.773C21.6533 7.84267 21.7088 7.92543 21.7466 8.01655C21.7844 8.10767 21.8038 8.20535 21.8038 8.304C21.8038 8.40265 21.7844 8.50033 21.7466 8.59145C21.7088 8.68257 21.6533 8.76533 21.5835 8.835L15.3915 15H23.25C23.4489 15 23.6397 15.079 23.7803 15.2197C23.921 15.3603 24 15.5511 24 15.75V23.25C24 23.4489 23.921 23.6397 23.7803 23.7803C23.6397 23.921 23.4489 24 23.25 24H4.5C3.90898 24.0007 3.32365 23.8846 2.77765 23.6583C2.23166 23.432 1.73577 23.1001 1.3185 22.6815C0.489166 21.8549 0.0159661 20.7368 0 19.566M9 19.251L19.992 8.301L15.7485 4.059L9 10.782V19.2525V19.251ZM6.75 19.5C6.75 18.9033 6.51295 18.331 6.09099 17.909C5.66903 17.4871 5.09674 17.25 4.5 17.25C3.90326 17.25 3.33097 17.4871 2.90901 17.909C2.48705 18.331 2.25 18.9033 2.25 19.5C2.25 20.0967 2.48705 20.669 2.90901 21.091C3.33097 21.5129 3.90326 21.75 4.5 21.75C5.09674 21.75 5.66903 21.5129 6.09099 21.091C6.51295 20.669 6.75 20.0967 6.75 19.5ZM22.5 22.5V16.5H13.887L7.8645 22.5H22.5Z" />
+            </g>
+            <defs>
+              <clipPath id="clip0_227_425">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+
+          <svg v-show="order[3] == 'Khaaka'" class="stroke-black" width="24" height="24" fill="none" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M2 2L16.5 5.5L18 13L13 18L5.5 16.5L2 2ZM2 2L9.586 9.586M12 19L19 12L22 15L15 22L12 19ZM13 11C13 12.1046 12.1046 13 11 13C9.89543 13 9 12.1046 9 11C9 9.89543 9.89543 9 11 9C12.1046 9 13 9.89543 13 11Z"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
           <h4 class="font-text">{{ order[3] }}</h4>
         </section>
         <section class="flex items-center font-heading">
@@ -294,7 +349,6 @@ const formattedDate = computed(() => {
           {{ formatDate(order[4]) }}
         </section>
       </section>
-
     </div>
   </main>
 </template>
