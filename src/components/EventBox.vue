@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 
+const props = defineProps({ name: String, description: String, time: String, color: String })
 const indianWomenNames = [
   "Sonia Mehra",
   "Kavita Patel",
@@ -64,19 +65,22 @@ function RGBtoHEX(r, g, b) {
 
 const ribbon = ref(null)
 onMounted(() => {
-  ribbon.value.style.backgroundColor = getNameColor(indianWomenNames[Math.floor(Math.random() * (8))])
+  ribbon.value.style.backgroundColor = props.color
 })
 </script>
 
 <template>
   <div class="bg-white grid rounded-2xl w-40 pb-2 shadow-xl shadow-grey/10">
-    <section class="bg-black h-6 rounded-2xl rounded-b-none"></section>
+    <section class="bg-black grid place-content-center h-6 rounded-2xl rounded-b-none">
+      <div class="bg-white h-[2px] w-16 rounded-full"></div>
+    </section>
     <div class="flex items-center justify-between mt-4 mb-1 pl-4">
-      <h3 class="font-heading">{{ indianWomenNames[Math.floor(Math.random() * (10))] }}</h3>
+      <h3 class="font-heading">{{ props.name }}</h3>
+      <!-- <h3 class="font-heading">{{ indianWomenNames[Math.floor(Math.random() * (10))] }}</h3> -->
       <section ref="ribbon" class="w-4 h-2 rounded-l-full"></section>
     </div>
     <section class="px-4">
-      <h4 class="text-grey font-text text-xs">New Client coming for trial</h4>
+      <h4 class="text-grey font-text text-xs leading-tight">{{ props.description }}</h4>
     </section>
     <section class="bg-black flex gap-1 w-fit mx-4 my-2 px-2 py-1 rounded-md">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +91,7 @@ onMounted(() => {
           d="M7.99984 2.16669C4.77818 2.16669 2.1665 4.77836 2.1665 8.00002C2.1665 11.2217 4.77818 13.8334 7.99984 13.8334C11.2215 13.8334 13.8332 11.2217 13.8332 8.00002C13.8332 4.77836 11.2215 2.16669 7.99984 2.16669ZM3.1665 8.00002C3.1665 5.33064 5.33046 3.16669 7.99984 3.16669C10.6692 3.16669 12.8332 5.33064 12.8332 8.00002C12.8332 10.6694 10.6692 12.8334 7.99984 12.8334C5.33046 12.8334 3.1665 10.6694 3.1665 8.00002Z"
           fill="white" />
       </svg>
-      <h4 class="text-white text-xs font-heading font-light">12 00</h4>
+      <h4 class="text-white text-xs font-heading font-light">{{ props.time }}</h4>
     </section>
   </div>
 </template>

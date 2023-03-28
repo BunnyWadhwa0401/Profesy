@@ -45,6 +45,9 @@ onMounted(async () => {
   <div class="app">
     <sideBar />
     <router-view />
+    <div class="bg-black text-grey grid place-content-center w-full mt-16 pt-4 pb-2">
+      <h2>Profesy 2021 © Made in India</h2>
+    </div>
   </div>
 </template>
 

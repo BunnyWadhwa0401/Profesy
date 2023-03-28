@@ -2,8 +2,20 @@
 import appointmentBox from "../components/appointmentBox.vue";
 import EventBox from "../components/EventBox.vue";
 import Header from "../components/Header.vue";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import gsap from "gsap";
+
+let appointments = ref(localStorage.getItem("Appointments"));
+appointments.value = JSON.parse(appointments.value.replace(/'/g, '"'));
+
+let deliveries = ref(localStorage.getItem("Deliveries"));
+deliveries.value = JSON.parse(deliveries.value.replace(/'/g, '"'));
+
+const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const today = new Date();
+let dayOfWeek = today.getDay();
+let date = today.getDate();
+const day = () => { return daysOfWeek[dayOfWeek++] };
 
 onMounted(() => {
   const timeLine = gsap.timeline({
@@ -22,7 +34,7 @@ onMounted(() => {
       }
     )
     .fromTo(
-      ".tile",
+      ".tile, .tile div",
       {
         y: -50,
         opacity: 0,
@@ -30,7 +42,7 @@ onMounted(() => {
       {
         y: 0,
         opacity: 1,
-        stagger: 0.25,
+        stagger: 0.01,
       },
       // "-=1"
     )
@@ -38,7 +50,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="Calendar-page">
+  <main class="Calendar-page h-screen">
     <Header title="Your Calendar" />
     <div class="grid grid-cols-[4fr_2fr] mt-8">
       <section class="flex font-heading ml-[41vw] tracking-[0.25rem] items-end">
@@ -60,7 +72,7 @@ onMounted(() => {
         </svg>
       </section>
       <section v-for="i in 6" :key="i">
-        <appointment-box />
+        <appointment-box :day="day()" :date="date < 32 ? date++ : date = 1" />
       </section>
       <section class="flex items-center justify-end">
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,36 +85,37 @@ onMounted(() => {
     <section class="grid grid-cols-8 mt-6 justify-items-center gap-36">
       <section></section>
       <section class="tile grid h-40 gap-6 mt-5">
-        <section v-for="i in 4" :key="i">
-          <EventBox />
+        <section v-show="appointment[2] == '27/03/2023'" v-for="appointment in appointments" :key="appointment">
+          <EventBox :name="appointment[0]" :description="appointment[1]" :color="appointment[4]" :time="appointment[3]" />
         </section>
       </section>
       <section class="tile grid h-40 gap-6 mt-5">
-        <section v-for="i in 2" :key="i">
-          <EventBox />
+        <section v-show="appointment[2] == '28/03/2023'" v-for="appointment in appointments" :key="appointment">
+          <EventBox :name="appointment[0]" :description="appointment[1]" :color="appointment[4]" :time="appointment[3]" />
         </section>
       </section>
       <section class="tile grid h-40 gap-6 mt-5">
-        <section v-for="i in 3" :key="i">
-          <EventBox />
+        <section v-show="appointment[2] == '29/03/2023'" v-for="appointment in appointments" :key="appointment">
+          <EventBox :name="appointment[0]" :description="appointment[1]" :color="appointment[4]" :time="appointment[3]" />
         </section>
       </section>
       <section class="tile grid h-40 gap-6 mt-5">
-        <section v-for="i in 6" :key="i">
-          <EventBox />
+        <section v-show="appointment[2] == '30/03/2023'" v-for="appointment in appointments" :key="appointment">
+          <EventBox :name="appointment[0]" :description="appointment[1]" :color="appointment[4]" :time="appointment[3]" />
         </section>
       </section>
       <section class="tile grid h-40 gap-6 mt-5">
-        <section v-for="i in 1" :key="i">
-          <EventBox />
+        <section v-show="appointment[2] == '31/03/2023'" v-for="appointment in appointments" :key="appointment">
+          <EventBox :name="appointment[0]" :description="appointment[1]" :color="appointment[4]" :time="appointment[3]" />
         </section>
       </section>
       <section class="tile grid h-40 gap-6 mt-5">
-        <section v-for="i in 5" :key="i">
-          <EventBox />
+        <section v-show="appointment[2] == '01/04/2023'" v-for="appointment in appointments" :key="appointment">
+          <EventBox :name="appointment[0]" :description="appointment[1]" :color="appointment[4]" :time="appointment[3]" />
         </section>
       </section>
       <section></section>
     </section>
+
   </main>
 </template>
