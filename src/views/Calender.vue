@@ -15,7 +15,15 @@ const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Fri
 const today = new Date();
 let dayOfWeek = today.getDay();
 let date = today.getDate();
-const day = () => { return daysOfWeek[dayOfWeek++] };
+function getDay() {
+  dayOfWeek = dayOfWeek < 7 ? dayOfWeek++ : 0;
+  return dayOfWeek
+}
+function getDate() {
+  date = date < 32 ? date++ : 0;
+  return date
+}
+const day = () => { return daysOfWeek[getDay()] };
 
 onMounted(() => {
   const timeLine = gsap.timeline({
@@ -71,9 +79,12 @@ onMounted(() => {
             fill="#333333" />
         </svg>
       </section>
-      <section v-for="i in 6" :key="i">
-        <appointment-box :day="day()" :date="date < 32 ? date++ : date = 1" />
-      </section>
+      <appointment-box :day="29" date="Wednesday" />
+      <appointment-box :day="30" date="Thursday" />
+      <appointment-box :day="31" date="Friday" />
+      <appointment-box :day="1" date="Saturday" />
+      <appointment-box :day="2" date="Sunday" />
+      <appointment-box :day="3" date="Monday" />
       <section class="flex items-center justify-end">
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"

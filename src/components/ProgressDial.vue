@@ -1,5 +1,9 @@
 <script setup>
+import { ref } from "vue"
 
+const props = defineProps({ percentage: String })
+const circle = ref(null)
+circle.value?.style.setProperty("--percent", props.percentage);
 </script>
 
 <template>
@@ -7,10 +11,10 @@
     <div class="percent">
       <svg>
         <circle cx="75" cy="75" r="70"></circle>
-        <circle cx="75" cy="75" r="70" style="--percent: 70"></circle>
+        <circle cx="75" cy="75" r="70" ref="circle"></circle>
       </svg>
       <div class="number">
-        <h4 class="font-heading font-semibold text-primary text-2xl">70%</h4>
+        <h4 class="font-heading font-semibold text-primary text-2xl">{{ props.percentage }}%</h4>
       </div>
     </div>
   </div>
